@@ -1,24 +1,37 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import React, { useState, useEffect } from 'react';
+import {Link} from 'react-router-dom';
 
+import Header from './resources/Header';
+import SingleHouse from './resources/SingleHouse';
+
+import {Container, Row, Col } from 'react-bootstrap';
+
+import Store from './Store';
 function App() {
+  const [watch, watchChange] = useState(false);
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      <Header />
+      <Container>
+        <Row>
+          <Col md="4"><SingleHouse /></Col>
+          <Col md="4"><SingleHouse /></Col>
+          <Col md="4"><SingleHouse /></Col>
+          <Col md="4"><SingleHouse /></Col>
+        </Row>
+      </Container>
+
+      
+      
+      <h1>This is app {Store.name}</h1>
+      <Link to="/" >App</Link><br/>
+      <Link to="/home" >home</Link><br/>
+      <Link to="/settings" >settings</Link>
+
+      <button onClick={() => {
+        Store.name = "Mamuin";
+        watchChange(!watch);
+      }}>Change</button>
     </div>
   );
 }
