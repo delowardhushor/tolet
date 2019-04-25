@@ -8,23 +8,28 @@ import Grid from '@material-ui/core/Grid';
 
 
 import Store from './Store';
+
 function App() {
+
   const [watch, watchChange] = useState(false);
+
+  //setInterval(()=>{watchChange(!watch)}, 1000);
+
+  const Houses = JSON.parse(JSON.stringify(Store.houses)).map((item, index) => {
+    return (
+      <Grid key={index} item lg={3} md={4} sm={6} >
+        <SingleHouse />
+      </Grid>
+    );
+  })
+
   return (
     <div className="App">
 
       <Header />
 
-      <Grid container spacing={24}>
-        <Grid item xs={12} md={4} >
-          <SingleHouse />
-        </Grid>
-        <Grid item xs={12} md={4} >
-          <SingleHouse />
-        </Grid>
-        <Grid item xs={12} md={4} >
-          <SingleHouse />
-        </Grid>
+      <Grid container spacing={0}>
+        {Houses}
       </Grid>
 
       
